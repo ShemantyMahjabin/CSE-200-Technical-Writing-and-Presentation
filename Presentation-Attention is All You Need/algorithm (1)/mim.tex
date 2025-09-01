@@ -1,0 +1,35 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+\begin{document}
+
+\begin{algorithm}
+\caption{The reduction from 4-Clique Detection to st-SubConn}
+\begin{algorithmic}[1]
+\State Initialize the st-SubConn data structure on $G$, letting $S$ contain all vertices.
+\For{$d \in D$}
+    \For{$a \in A$}
+        \State Let $a^{UD} \in S$ if and only if $(a,d) \in E$.
+    \EndFor
+    \For{$b \in B$ such that $(b,d) \in E$}
+        \State Let $b^{VB} \in S$.
+        \For{$b' \in B \setminus \{b\}$}
+            \State Let $(b')^{VB} \notin S$.
+        \EndFor
+        \For{$c \in C$}
+            \State Let $c^{VC} \in S$ if and only if $(c,d), (c,b) \in E$.
+        \EndFor
+        \If{$s$, $t$ are connected in the induced subgraph of $S$}
+            \State \Return \textbf{True}
+        \EndIf
+    \EndFor
+\EndFor
+\State \Return \textbf{False}
+\end{algorithmic}
+\end{algorithm}
+
+\end{document}
